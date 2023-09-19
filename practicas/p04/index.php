@@ -88,6 +88,30 @@
 
                 echo "$num_rand es el primer multiplo de: $num_ingresado";
             ?>
+            
+            <h3>Crear una variante de este script utilizando el ciclo do-while. El número dado se debe obtener vía GET.</h3>
+            <?php
+                if (isset($_GET['numero'])) {
+                    $num_ingresado = (int)$_GET['numero'];
+
+                    if ($num_ingresado > 0) { //comprobamos si el numero ingresado es positivo
+                        $encontrado = false; //inicializamos un booleano para marcar el valor que cumple con las condiciones
+                        do {
+                            $num_rand = rand(1, 1000);
+                            if ($num_rand % $num_ingresado === 0) {
+                                $encontrado = true;
+                            }
+                        } while (!$encontrado);
+
+                        echo "$num_rand es el primer multiplo de: $num_ingresado";
+                    } else {
+                        echo "El número ingresado debe ser un entero positivo.";
+                    }
+                } else {
+                    echo "Ingrese un número dado a través de la solicitud GET.";
+                }
+            ?>
+
 
 
 
